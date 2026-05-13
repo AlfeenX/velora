@@ -18,7 +18,7 @@ class CheckoutController extends Controller
     ) {
 
         $order = $service->checkout(
-            auth()->id(),
+            $request->user()->id,
             $request->validated()
         );
 

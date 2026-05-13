@@ -18,7 +18,7 @@ class CartController extends Controller
     ) {
 
         $cart = $service->add(
-            auth()->id(),
+            $request->user()->id,
             $request->product_variant_id,
             $request->quantity
         );

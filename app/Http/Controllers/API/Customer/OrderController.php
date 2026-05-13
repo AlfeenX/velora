@@ -10,7 +10,7 @@ use App\Http\Resources\Order\OrderResource;
 
 class OrderController extends Controller
 {
-    public function index()
+    public function index(\Illuminate\Http\Request $request)
     {
         $orders = Order::with([
             'items.variant',
@@ -18,17 +18,17 @@ class OrderController extends Controller
             'shipment',
             'address'
         ])
-        ->where('user_id', auth()->id())
+        ->where('user_id', $request->user()->id)
         ->latest()
         ->paginate(10);
 
         return OrderResource::collection($orders);
     }
 
-    public function show(Order $order)
+    public function show(\Illuminate\Http\Request $request, Order $order)
     {
         abort_if(
-            $order->user_id !== auth()->id(),
+            $order->user_id !== $request->user()->id,
             403
         );
 

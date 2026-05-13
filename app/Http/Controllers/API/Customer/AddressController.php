@@ -12,10 +12,10 @@ use App\Http\Resources\User\AddressResource;
 
 class AddressController extends Controller
 {
-    public function index()
+    public function index(\Illuminate\Http\Request $request)
     {
         return AddressResource::collection(
-            auth()->user()->addresses
+            $request->user()->addresses
         );
     }
 
@@ -23,7 +23,7 @@ class AddressController extends Controller
         StoreAddressRequest $request
     ) {
 
-        $address = auth()->user()
+        $address = $request->user()
             ->addresses()
             ->create(
                 $request->validated()
