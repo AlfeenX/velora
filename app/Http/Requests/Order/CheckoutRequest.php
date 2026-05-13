@@ -12,7 +12,7 @@ class CheckoutRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,7 +23,20 @@ class CheckoutRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'address_id' => ['required', 'exists:addresses,id'],
+            'payment_method' => ['required', 'string', 'max:255'],
+        ];
+    }
+
+    /**
+     * Get custom messages for validator errors.
+     */
+    public function messages(): array
+    {
+        return [
+            'address_id.required' => 'Alamat pengiriman wajib dipilih.',
+            'address_id.exists' => 'Alamat pengiriman tidak ditemukan.',
+            'payment_method.required' => 'Metode pembayaran wajib dipilih.',
         ];
     }
 }

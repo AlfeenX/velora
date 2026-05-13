@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Cart;
+namespace App\Http\Requests\Product;
 
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class AddToCartRequest extends FormRequest
+class UpdateTagRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,8 +23,8 @@ class AddToCartRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'product_variant_id' => ['required', 'exists:product_variants,id'],
-            'quantity' => ['required', 'integer', 'min:1'],
+            'name' => ['sometimes', 'string', 'max:255', 'unique:tags,name,' . $this->route('tag')?->id],
+            'slug' => ['sometimes', 'string', 'max:255', 'unique:tags,slug,' . $this->route('tag')?->id],
         ];
     }
 
@@ -34,9 +34,8 @@ class AddToCartRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'product_variant_id.required' => 'Varian produk wajib dipilih.',
-            'product_variant_id.exists' => 'Varian produk tidak ditemukan.',
-            'quantity.min' => 'Jumlah minimal adalah 1.',
+            'name.unique' => 'Nama tag sudah digunakan.',
+            'slug.unique' => 'Slug tag sudah digunakan.',
         ];
     }
 }
