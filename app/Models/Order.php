@@ -17,11 +17,13 @@ class Order extends Model
                 $address = Address::find($order->address_id);
                 if ($address) {
                     $order->shipping_address = [
-                        'street' => $address->street,
+                        'recipient_name' => $address->recipient_name,
+                        'phone_number' => $address->phone_number,
+                        'province' => $address->province,
                         'city' => $address->city,
-                        'state' => $address->state,
+                        'district' => $address->district,
                         'postal_code' => $address->postal_code,
-                        'country' => $address->country,
+                        'detail_address' => $address->detail_address,
                     ];
                 }
             }
