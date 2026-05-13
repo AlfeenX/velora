@@ -30,7 +30,7 @@ class Product extends Model
         return $this->belongsTo(Collection::class);
     }
 
-    public function productImages()
+    public function images()
     {
         return $this->hasMany(ProductImage::class);
     }
