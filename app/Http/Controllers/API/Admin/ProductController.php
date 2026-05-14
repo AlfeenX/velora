@@ -16,17 +16,17 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::with([
-            'category',
-            'collection',
-            'tags',
-            'variants',
-            'images'
-        ])
-        ->latest()
-        ->paginate(20);
+        return view('pages.admin.product.index');
+    }
 
-        return ProductResource::collection($products);
+    public function create()
+    {
+        return view('pages.admin.product.create');
+    }
+
+    public function edit(Product $product)
+    {
+        return view('pages.admin.product.edit', compact('product'));
     }
 
     public function store(
@@ -70,8 +70,6 @@ class ProductController extends Controller
     {
         $product->delete();
 
-        return response()->json([
-            'message' => 'Product deleted'
-        ]);
+        return back()->with('success', 'Produk berhasil dihapus');
     }
 }

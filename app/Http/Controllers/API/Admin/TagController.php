@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Product\StoreTagRequest;
 use Illuminate\Http\Request;
 use App\Models\Tag;
+use App\Http\Resources\Product\TagResource;
 
 class TagController extends Controller
 {
@@ -14,11 +15,10 @@ class TagController extends Controller
      */
     public function index()
     {
-        $tag = Tag::all();
-        return response()->json([
-            'status' => 'success',
-            'data' => $tag,
-        ]);
+        $tag = Tag::latest()->get();
+        $tag = TagResource::collection($tag);
+
+        return view('pages.admin.tag.index', compact('tag'));
     }
 
     /**

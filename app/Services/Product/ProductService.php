@@ -22,21 +22,22 @@ class ProductService
             ]);
 
             // Attach tags
-            if (!empty($data['tags'])) {
+            if (isset($data['tags']) && !empty($data['tags'])) {
                 $product->tags()->attach($data['tags']);
             }
 
             // Create variants
-            foreach ($data['variants'] as $variant) {
-
-                $product->variants()->create([
-                    'sku' => $variant['sku'],
-                    'color' => $variant['color'],
-                    'size' => $variant['size'],
-                    'price' => $variant['price'],
-                    'stock' => $variant['stock'],
-                    'weight' => $variant['weight'] ?? null,
-                ]);
+            if (isset($data['variants']) && is_array($data['variants'])) {
+                foreach ($data['variants'] as $variant) {
+                    $product->variants()->create([
+                        'sku' => $variant['sku'],
+                        'color' => $variant['color'],
+                        'size' => $variant['size'],
+                        'price' => $variant['price'],
+                        'stock' => $variant['stock'],
+                        'weight' => $variant['weight'] ?? null,
+                    ]);
+                }
             }
 
             return $product->load([

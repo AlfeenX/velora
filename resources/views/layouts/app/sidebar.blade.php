@@ -30,13 +30,13 @@
             </flux:sidebar.group>
 
             <flux:sidebar.group :heading="__('Tools')" class="grid">
-                <flux:sidebar.item icon="cube" wire:navigate>
+                <flux:sidebar.item icon="cube" wire:navigate :href="route('admin.products.index')" :current="request()->routeIs('admin.products.index')">
                     {{ __('Products') }}
                 </flux:sidebar.item>
-                <flux:sidebar.item icon="squares-2x2" wire:navigate>
+                <flux:sidebar.item icon="squares-2x2" wire:navigate :href="route('admin.categories.index')" :current="request()->routeIs('admin.categories.index')">
                     {{ __('Categories') }}
                 </flux:sidebar.item>
-                <flux:sidebar.item icon="tag" wire:navigate>
+                <flux:sidebar.item icon="tag" wire:navigate :href="route('admin.tags.index')" :current="request()->routeIs('admin.tags.index')">
                     {{ __('Tags') }}
                 </flux:sidebar.item>
             </flux:sidebar.group>

@@ -87,27 +87,27 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource(
     '/admin/products',
     AdminProductController::class
-);
+)->names('admin.products');
 
 Route::resource(
     '/admin/categories',
     CategoryController::class
-);
+)->names('admin.categories');
 
 Route::resource(
     '/admin/collections',
     CollectionController::class
-);
+)->names('admin.collections');
 
 Route::resource(
     '/admin/tags',
     TagController::class
-);
+)->names('admin.tags');
 
 Route::resource(
     '/admin/orders',
     AdminOrderController::class
-);
+)->names('admin.orders');
 
 // Route::resource(
 //     '/admin/payments',

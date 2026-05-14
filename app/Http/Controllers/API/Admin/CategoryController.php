@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Product\StoreCategoryRequest;
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Http\Resources\Product\CategoryResource;
 
 
 class CategoryController extends Controller
@@ -16,14 +17,11 @@ class CategoryController extends Controller
     public function index(Request $request)
     {
         $paginate = (int) $request->paginate ?? 10;
-        $search = $request->search ?? '';
-        $sort = $request->sort ?? 'desc';
 
-        $category = Category::paginate($paginate);
-        return response()->json([
-            'status' => 'success',
-            'data' => $category,
-        ]);
+        $category = Category::latest()->paginate($paginate);
+        $category = CategoryResource::collection($category);
+
+        return view('pages.admin.category.index', compact('category'));
     }
 
     /**
