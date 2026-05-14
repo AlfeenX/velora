@@ -29,17 +29,19 @@ use App\Http\Controllers\API\Admin\ShipmentController;
 | PUBLIC PRODUCT ROUTES
 |--------------------------------------------------------------------------
 */
-Route::view('/', 'welcome')->name('home');
+Route::get('/', function(){
+    return view('welcome');
+})->name('home');
 
 Route::get('/products', [
     ProductController::class,
     'index'
-]);
+])->name('product.index');
 
 Route::get('/products/{product}', [
     ProductController::class,
     'show'
-]);
+])->name('product.show');
 
 /*
 |--------------------------------------------------------------------------
@@ -80,32 +82,32 @@ Route::resource(
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::view('dashboard', 'dashboard')->name('dashboard');
+    Route::view('admin', 'dashboard')->name('dashboard');
 
     Route::resource(
     '/admin/products',
     AdminProductController::class
 );
 
-// Route::resource(
-//     '/admin/categories',
-//     CategoryController::class
-// );
+Route::resource(
+    '/admin/categories',
+    CategoryController::class
+);
 
-// Route::resource(
-//     '/admin/collections',
-//     CollectionController::class
-// );
+Route::resource(
+    '/admin/collections',
+    CollectionController::class
+);
 
-// Route::resource(
-//     '/admin/tags',
-//     TagController::class
-// );
+Route::resource(
+    '/admin/tags',
+    TagController::class
+);
 
-// Route::resource(
-//     '/admin/orders',
-//     AdminOrderController::class
-// );
+Route::resource(
+    '/admin/orders',
+    AdminOrderController::class
+);
 
 // Route::resource(
 //     '/admin/payments',

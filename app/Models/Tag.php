@@ -18,4 +18,9 @@ class Tag extends Model
     {
         return $this->belongsToMany(Product::class, 'product_tag');
     }
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }
