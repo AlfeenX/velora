@@ -1,4 +1,4 @@
-<x-layouts::app :title="__('Products')">
+<x-layouts::app :title="__('Inventory Products')">
     <div class="flex justify-between">
         <div class="flex flex-col gap-2">
             <h1 class="text-3xl font-bold">{{ __('Manage Payment') }}</h1>

@@ -1,4 +1,4 @@
-<x-layouts::app :title="__('Velora | Product Inventory')">
+<x-layouts::app :title="__('Product Inventory')">
     <div class="flex justify-between items-center mb-6">
         <div class="flex flex-col gap-1">
             <h1 class="text-3xl font-bold tracking-tight">{{ __('Product Inventory') }}</h1>

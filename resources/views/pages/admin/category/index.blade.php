@@ -1,4 +1,4 @@
-<x-layouts::app :title="__('Velora | Category Tools')">
+<x-layouts::app :title="__('Category Tools')">
     <div class="flex justify-between">
         <div class="flex flex-col gap-2">
             <h1 class="text-3xl font-bold">{{ __('Category Tools') }}</h1>

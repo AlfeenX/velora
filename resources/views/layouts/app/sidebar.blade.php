@@ -3,6 +3,7 @@
 
 <head>
     @include('partials.head')
+    @stack('head')
 </head>
 
 <body class="min-h-screen bg-white dark:bg-zinc-800">
@@ -99,6 +100,7 @@
         </flux:toast.group>
     @endpersist
 
+    @stack('scripts')
     @fluxScripts
 </body>
 

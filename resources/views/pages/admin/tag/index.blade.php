@@ -1,4 +1,4 @@
-<x-layouts::app :title="__('Velora | Tag Tools')">
+<x-layouts::app :title="__('Tag Tools')">
     <div class="flex justify-between">
         <div class="flex flex-col gap-2">
             <h1 class="text-3xl font-bold">{{ __('Tag Tools') }}</h1>

@@ -82,7 +82,7 @@ Route::resource(
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::view('admin', 'dashboard')->name('dashboard');
+    Route::get('admin', [App\Http\Controllers\API\Admin\DashboardController::class, 'index'])->name('dashboard');
 
     Route::resource(
     '/admin/products',
