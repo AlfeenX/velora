@@ -36,12 +36,9 @@ class CreateProduct extends Component
     {
         $this->slug = Str::slug($value);
 
-        $this->validateOnly('slug', [
-            'slug' => [
-                'required',
-                Rule::unique('products', 'slug'),
-            ]
-            ]);
+        $this->validate([
+            'required'
+        ]);
     }
 
     public function updatedSlug()
